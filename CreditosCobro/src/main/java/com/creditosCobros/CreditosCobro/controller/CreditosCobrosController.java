@@ -31,16 +31,7 @@ public class CreditosCobrosController {
             @RequestParam(value = ApiConstants.PARAM_PAIS_DOC, required = false) Integer paisDocumento,
             @RequestParam(value = ApiConstants.PARAM_TIPO_DOC, required = false) Integer tipoDocumento,
             @RequestParam(value = ApiConstants.PARAM_CUENTA, required = false) Integer cuenta) throws APIException {
-
-//        MichiContext mctx = MichiContext.getContext(request);
-//        AuthAPIClient auth = AuthAPIClientFactory.getNewInstance(mctx.getTrackingInfo());
-//        try {
-//            auth.getSession(mctx.getAccessToken());
-//        } catch (APIClientException e) {
-//            log.error(ERROR_SESSION_MESSAGE, e);
-//            throw new APIException(e);
-//        }
-
+        
         if (cuenta==null){
             return creditosCobroService.consultarPrestamos(paisDocumento, tipoDocumento, numeroDocumento, moneda);
         }
