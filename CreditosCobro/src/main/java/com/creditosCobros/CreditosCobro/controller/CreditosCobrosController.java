@@ -15,12 +15,16 @@ import com.creditosCobros.CreditosCobro.exception.APIException;
 
 @Api
 @RestController
+@RequestMapping("/prestamos")
 public class CreditosCobrosController {
 
     CreditosCobroService creditosCobroService;
     private static final String API_KEY_DOC = "API KEY de la aplicación solicitante. Este parámetro se puede pasar a través de un HEADER con el nombre: X-RshkMichi-ApiKey";
+    private static final String CONSULTAR = "/consultar-prestamo";
+    private static final String COBRAR = "/cobrar-prestamo";
+    private static final String CONFIRMAR = "/{token}/confirmar";
 
-    @RequestMapping(value = "/consultar-prestamos", method = RequestMethod.GET)
+    @RequestMapping(value = CONSULTAR, method = RequestMethod.GET)
    // @AclAction(actionCode = ApiConstants.ACTION_CONSULTAR_PRESTAMOS)
     @ApiOperation("Api que consulta datos de prestamos")
     public PrestamosPersona consultarPrestamos(
@@ -31,7 +35,7 @@ public class CreditosCobrosController {
             @RequestParam(value = ApiConstants.PARAM_PAIS_DOC, required = false) Integer paisDocumento,
             @RequestParam(value = ApiConstants.PARAM_TIPO_DOC, required = false) Integer tipoDocumento,
             @RequestParam(value = ApiConstants.PARAM_CUENTA, required = false) Integer cuenta) throws APIException {
-        
+
         if (cuenta==null){
             return creditosCobroService.consultarPrestamos(paisDocumento, tipoDocumento, numeroDocumento, moneda);
         }
