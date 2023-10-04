@@ -3,6 +3,7 @@ package com.creditosCobros.CreditosCobro.repository;
 import com.creditosCobros.CreditosCobro.dto.PrestamoOperacionDTO;
 import com.creditosCobros.CreditosCobro.exception.APIClientException;
 import com.creditosCobros.CreditosCobro.exception.APIException;
+import com.creditosCobros.CreditosCobro.exception.APIExceptionType;
 import com.creditosCobros.CreditosCobro.exception.ErrorBody;
 import com.creditosCobros.CreditosCobro.mapper.DatoPrestamoRowMapper;
 import com.creditosCobros.CreditosCobro.model.*;
@@ -210,10 +211,10 @@ public class WUAgenteITGFDAO extends JdbcDaoSupport{
                 cs.execute();
                 return cs.getString(1);
             });
-            logger.info("result: {}", result);
+            logger.info("result: {}");
             return result;
         } catch (DataAccessException e) {
-            logger.error("Error al obtener deudas de la cuenta nro: {}", nroPrestamo);
+            logger.error("Error al obtener deudas de la cuenta nro: {}");
             throw e;
         }
     }
@@ -229,9 +230,9 @@ public class WUAgenteITGFDAO extends JdbcDaoSupport{
         consultaCliente.setNroDocumento(documento.getNumeroDocumento());
         DatosCliente datosCliente = obtenerDatoscliente(consultaCliente);
 
-//        if (datosCliente == null) {
-//            throw new APIException("1", "Error al obtener datos del cliente para obtener datos de prestamo");
-//        }
+        if (datosCliente == null) {
+            throw new APIException(APIExceptionType.DATABASE, "Error al obtener datos del cliente para obtener datos de prestamo");
+        }
 
         /* Obtenemos la moneda por codigo */
         String mon = obtenerMonedaBcp(moneda);

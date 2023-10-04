@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CuotaPrestamoDTO {
+public class CuotaPrestamoPrevDTO {
     @JsonProperty(value = "Nro")
     private Integer numeroCuota;
 

@@ -25,11 +25,9 @@ public class CreditosCobrosController {
     private static final String CONFIRMAR = "/{token}/confirmar";
 
     @RequestMapping(value = CONSULTAR, method = RequestMethod.GET)
-   // @AclAction(actionCode = ApiConstants.ACTION_CONSULTAR_PRESTAMOS)
     @ApiOperation("Api que consulta datos de prestamos")
     public PrestamosPersona consultarPrestamos(
-          //  @ApiParam(value = API_KEY_DOC, required = false)
-            //@RequestParam(value = "api_key", required = false) String apiKey,
+
             @RequestParam(value = ApiConstants.PARAM_MONEDA, required = true) Integer moneda,
             @RequestParam(value = ApiConstants.PARAM_NUMERO_DOC, required = false) String numeroDocumento,
             @RequestParam(value = ApiConstants.PARAM_PAIS_DOC, required = false) Integer paisDocumento,
